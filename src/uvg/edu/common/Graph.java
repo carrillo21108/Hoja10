@@ -6,7 +6,7 @@ package uvg.edu.common;
 public class Graph {
 	
 	private int n;
-    private int[][] matriz;
+    private long[][] matriz;
 
     /**
      * Constructor
@@ -14,11 +14,11 @@ public class Graph {
      */
     public Graph(int n) {
         this.n = n;
-        matriz = new int[this.n][this.n];
+        matriz = new long[this.n][this.n];
         for(int i=0; i< n; i++){
             for(int j=0; j< n; j++){
                 if(i!=j) {
-                	matriz[i][j] = 1;
+                	matriz[i][j] = 999999999;
                 }else {
                 	matriz[i][j] = 0;
                 }
@@ -32,7 +32,7 @@ public class Graph {
      * @param j
      */
     public void add(int i, int j, String data){
-        matriz[i][j] = Integer.parseInt(data);;
+        matriz[i][j] = Integer.parseInt(data);
     }
 
     /**
@@ -51,33 +51,9 @@ public class Graph {
     public void print(){
 
         for(int i=0; i< n; i++){
-            System.out.print("||\t");
             for(int j=0; j< n; j++){
-                System.out.print( matriz[i][j] + "\t" );
+                System.out.print( matriz[i][j] + ", " );
             }
-            System.out.print("||");
-            System.out.println();
-        }
-    }
-
-    /**
-     * printInf
-     */
-    public void printInf(){
-        for(int i=0; i< n; i++){
-            for(int j=0; j< n; j++){
-                if (matriz[i][j]==0){
-                    matriz[i][j]=999999;
-                }
-            }
-
-        }
-        for(int i=0; i< n; i++){
-            System.out.print("||\t");
-            for(int j=0; j< n; j++){
-                System.out.print( matriz[i][j] + "\t" );
-            }
-            System.out.print("||");
             System.out.println();
         }
     }
@@ -86,7 +62,7 @@ public class Graph {
      * retorno
      * @return retorna matriz
      */
-    public int[][] retorno(){
+    public long[][] retorno(){
         return matriz;
     }
 
@@ -96,8 +72,21 @@ public class Graph {
      * @param b
      * @return km
      */
-    public int devolver(int ciudad1Index, int ciudad2Index){
+    public long devolver(int ciudad1Index, int ciudad2Index){
         return matriz[ciudad1Index][ciudad2Index];
     }
-
+    
+    /**
+     * devuelve km
+     * @param a
+     * @param b
+     * @return km
+     */
+    public int tamaño(){
+        return matriz.length;
+    }
+    
+    public void modify(int i, int j, long value){
+        matriz[i][j] = value;
+    }
 }

@@ -12,9 +12,12 @@ import java.util.ArrayList;
 public class AlgoritmoFloyd {
 	//Metodo que determina los caminos minimos
 	
-	public String algoritmoFloyd(long[][] matriz) {
-		int vertices = matriz.length;
-		long[][] matrizAdyacencia = matriz;
+	public ArrayList<String> algoritmoFloyd(ArrayList<String>ciudades, Graph matriz) {
+		
+		ArrayList<String> respuestas = new ArrayList<String>();
+		
+		int vertices = matriz.tamaño();
+		Graph matrizAdyacencia = matriz;
 		String caminos[][] = new String[vertices][vertices];
 		String caminosAux[][] = new String[vertices][vertices];
 		String caminoRecorrido = "";
@@ -34,9 +37,9 @@ public class AlgoritmoFloyd {
 		for(k=0;k<vertices;k++) {
 			for(i=0;i<vertices;i++) {
 				for(j=0;j<vertices;j++) {
-					temp1 = matrizAdyacencia[i][j];
-					temp2 = matrizAdyacencia[i][k];
-					temp3 = matrizAdyacencia[k][j];
+					temp1 = matrizAdyacencia.devolver(i, j);
+					temp2 = matrizAdyacencia.devolver(i, k);
+					temp3 = matrizAdyacencia.devolver(k, j);
 					temp4 = temp2+temp3;
 					
 					//Camino minimo
@@ -49,7 +52,7 @@ public class AlgoritmoFloyd {
 						}
 					}
 					
-					matrizAdyacencia[i][j] = (long) min;
+					matrizAdyacencia.modify(i,j,(long) min);
 				}
 			}
 		}
@@ -57,7 +60,7 @@ public class AlgoritmoFloyd {
 		//Agregando el camino minimo a cadena
 		for(i=0;i<vertices;i++) {
 			for(j=0;j<vertices;j++) {
-				cadena = cadena + "["+matrizAdyacencia[i][j]+"]";
+				cadena = cadena + "["+matrizAdyacencia.devolver(i, j)+"]";
 			}
 			
 			cadena = cadena + "\n";
@@ -65,20 +68,21 @@ public class AlgoritmoFloyd {
 		
 		for(i=0;i<vertices;i++) {
 			for(j=0;j<vertices;j++) {
-				if(matrizAdyacencia[i][j] != 1000000000) {
+				if(matrizAdyacencia.devolver(i, j) != 1000000000) {
 					if(i != j) {
 						if(caminos[i][j].equals("")) {
-							caminitos += "De ("+(i+1)+"--->"+(j+1)+") Irse por... ("+(i+1)+", "+(j+1)+")\n";
+							caminitos += i+", "+j+", "+i+", "+j+"\n";
 						}else {
-							caminitos += "De ("+(i+1)+"--->"+(j+1)+") Irse por... ("+(i+1)+", "+caminos[i][j]+", "+(j+1)+")\n";
+							caminitos += i+", "+j+", "+i+", "+caminos[i][j]+", "+j+"\n";
 						}
 					}
 				}
 			}
 		}
 		
-		return "La matriz de caminos mas cortos entre los diferentes vertices es:\n"+cadena+
-				"\nLos diferentes caminos mas cortos entre vertices son:\n"+caminitos;
+		respuestas.add(cadena);
+		respuestas.add(caminitos);
+		return respuestas;
 	}
 	
 	public String caminosR(int i, int k, String[][]caminosAux, String caminoRecorrido) {
