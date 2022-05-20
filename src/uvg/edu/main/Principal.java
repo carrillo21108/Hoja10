@@ -3,7 +3,11 @@
  */
 package uvg.edu.main;
 
+import java.util.Scanner;
+
 import uvg.edu.common.AlgoritmoFloyd;
+import uvg.edu.common.Graph;
+import uvg.edu.io.Reader;
 
 /**
  * @author Brian Carrillo
@@ -15,9 +19,18 @@ public class Principal {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		long matrizA[][]= {{0,3,4,999999999,8,999999999},{999999999,0,999999999,999999999,5,999999999},{999999999,999999999,0,999999999,3,999999999},{999999999,999999999,999999999,0,999999999,999999999},{999999999,999999999,999999999,7,0,3},{999999999,999999999,999999999,2,999999999,0}};
-		AlgoritmoFloyd floyd = new AlgoritmoFloyd();
-		System.out.println(floyd.algoritmoFloyd(matrizA));
+		
+		//Instancia del scanner
+		Scanner scanner = new Scanner(System.in);
+		
+		//Solicitud de la ruta del archivo.
+		System.out.println("Ingrese la ruta en la que se encuentra el archivo .txt a escanear.");
+		String ruta = scanner.nextLine();
+				
+		//Instancia de la clase que escaneara guategrafo.txt
+		Reader reader = new Reader();
+		Graph matriz = reader.leerTxt(ruta);
+		matriz.print();
 	}
 
 }
