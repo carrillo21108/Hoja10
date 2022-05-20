@@ -111,7 +111,6 @@ public class Reader {
             // En el finally cerramos el archivo, tanto si se leyo correctamente como si
         	// se encontro alguna excepcion.
             try{
-            	//Cierre del archivos
                 if( fr != null ){   
                     fr.close();     
                 }                  
