@@ -3,11 +3,8 @@
  */
 package uvg.edu.common;
 
-/**
- * @author Carlos Lopez
- *
- */
 public class Graph {
+	
 	private int n;
     private int[][] matriz;
 
@@ -20,7 +17,11 @@ public class Graph {
         matriz = new int[this.n][this.n];
         for(int i=0; i< n; i++){
             for(int j=0; j< n; j++){
-                matriz[i][j] = 0;
+                if(i!=j) {
+                	matriz[i][j] = 1;
+                }else {
+                	matriz[i][j] = 0;
+                }
             }
         }
     }
@@ -29,7 +30,6 @@ public class Graph {
      * add
      * @param i
      * @param j
-     * @param data 
      */
     public void add(int i, int j, String data){
         matriz[i][j] = Integer.parseInt(data);;
@@ -99,6 +99,5 @@ public class Graph {
     public int devolver(int ciudad1Index, int ciudad2Index){
         return matriz[ciudad1Index][ciudad2Index];
     }
-
 
 }

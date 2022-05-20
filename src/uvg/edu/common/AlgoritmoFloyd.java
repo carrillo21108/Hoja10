@@ -2,8 +2,8 @@
  * 
  */
 package uvg.edu.common;
-import java.util.ArrayList;
 
+import java.util.ArrayList;
 
 /**
  * @author Brian Carrillo
@@ -11,6 +11,7 @@ import java.util.ArrayList;
  */
 public class AlgoritmoFloyd {
 	//Metodo que determina los caminos minimos
+	
 	public String algoritmoFloyd(long[][] matriz) {
 		int vertices = matriz.length;
 		long[][] matrizAdyacencia = matriz;

@@ -3,18 +3,12 @@
  */
 package uvg.edu.io;
 
-/**
- * @author Carlos
- *
- */
-public class Conexion {
 
-	/**
-	 * 
-	 */
-	public String ciudad1 = "";
-    public String ciudad2 = "";
-    public int km = 0;
+public class Conexion {
+	
+	String ciudad1 = "";
+    String ciudad2 = "";
+    int km = 0;
     
     public Conexion() {
     }
@@ -27,7 +21,7 @@ public class Conexion {
      */
     public Conexion(String ciudad1, String ciudad2, String km){
     	this.ciudad1 = ciudad1;
-    	this.ciudad2 = ciudad1;
+    	this.ciudad2 = ciudad2;
     	this.km = Integer.parseInt(km);
     }
 
@@ -39,4 +33,5 @@ public class Conexion {
     public String toString() {
         return "ciudad1 = " + ciudad1 + ' ' + ", ciudad2 = " + ciudad2 + ' ' + ", km = " + km ;
     }
+
 }
