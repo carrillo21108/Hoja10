@@ -2,7 +2,6 @@
  * 
  */
 package uvg.edu.common;
-
 import java.util.ArrayList;
 
 /**
