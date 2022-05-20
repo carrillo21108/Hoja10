@@ -6,9 +6,9 @@ package uvg.edu.io;
 
 public class Conexion {
 	
-	String ciudad1 = "";
-    String ciudad2 = "";
-    int km = 0;
+	public String ciudad1 = "";
+    public String ciudad2 = "";
+    public int km = 0;
     
     public Conexion() {
     }
