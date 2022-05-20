@@ -3,7 +3,11 @@
  */
 package uvg.edu.main;
 
+import java.util.Scanner;
+
 import uvg.edu.common.AlgoritmoFloyd;
+import uvg.edu.common.Graph;
+import uvg.edu.io.Reader;
 
 /**
  * @author Brian Carrillo
@@ -15,9 +19,10 @@ public class Principal {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		long matrizA[][]= {{0,3,4,999999999,8,999999999},{999999999,0,999999999,999999999,5,999999999},{999999999,999999999,0,999999999,3,999999999},{999999999,999999999,999999999,0,999999999,999999999},{999999999,999999999,999999999,7,0,3},{999999999,999999999,999999999,2,999999999,0}};
-		AlgoritmoFloyd floyd = new AlgoritmoFloyd();
-		System.out.println(floyd.algoritmoFloyd(matrizA));
+		
+		long[][] matrizA = {{0,30,999999999,999999999,15},{30,0,25,999999999,40},{999999999,25,0,15,70},{999999999,999999999,15,0,90},{15,40,70,90,0}};
+		AlgoritmoFloyd algoritmo = new AlgoritmoFloyd();
+		System.out.println(algoritmo.algoritmoFloyd(matrizA));
 	}
 
 }

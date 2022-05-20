@@ -17,7 +17,11 @@ public class Graph {
         matriz = new int[this.n][this.n];
         for(int i=0; i< n; i++){
             for(int j=0; j< n; j++){
-                matriz[i][j] = 0;
+                if(i!=j) {
+                	matriz[i][j] = 1;
+                }else {
+                	matriz[i][j] = 0;
+                }
             }
         }
     }

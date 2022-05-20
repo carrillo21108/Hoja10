@@ -21,7 +21,7 @@ public class Conexion {
      */
     public Conexion(String ciudad1, String ciudad2, String km){
     	this.ciudad1 = ciudad1;
-    	this.ciudad2 = ciudad1;
+    	this.ciudad2 = ciudad2;
     	this.km = Integer.parseInt(km);
     }
 
