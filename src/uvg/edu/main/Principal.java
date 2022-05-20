@@ -20,17 +20,9 @@ public class Principal {
 	 */
 	public static void main(String[] args) {
 		
-		//Instancia del scanner
-		Scanner scanner = new Scanner(System.in);
-		
-		//Solicitud de la ruta del archivo.
-		System.out.println("Ingrese la ruta en la que se encuentra el archivo .txt a escanear.");
-		String ruta = scanner.nextLine();
-				
-		//Instancia de la clase que escaneara guategrafo.txt
-		Reader reader = new Reader();
-		Graph matriz = reader.leerTxt(ruta);
-		matriz.print();
+		long[][] matrizA = {{0,30,999999999,999999999,15},{30,0,25,999999999,40},{999999999,25,0,15,70},{999999999,999999999,15,0,90},{15,40,70,90,0}};
+		AlgoritmoFloyd algoritmo = new AlgoritmoFloyd();
+		System.out.println(algoritmo.algoritmoFloyd(matrizA));
 	}
 
 }
