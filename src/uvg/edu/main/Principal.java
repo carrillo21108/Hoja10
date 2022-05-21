@@ -13,14 +13,27 @@ import uvg.edu.io.Conexion;
 import uvg.edu.io.Reader;
 
 /**
- * @author Brian Carrillo
  *
  */
 public class Principal {
 
 	/**
-	 * @param args
-	 */
+     * Metodo main
+     *
+     * @param args: (String[])
+     * @see System.out#println()
+     * @see Reader#leerTxt()
+     * @see Reader#obtenerCiudades(String)
+     * @see Reader#update(String, String, String, String)
+     * @see Reader#delete(String, String, String, String)
+     * @see Scanner#nextLine()
+     * @see Scanner#close()
+     * @see Controller#centerGraph()
+     * @see Controller#obtenerRuta(String, String)
+     * @see Controller#modificarCiudades(ArrayList)
+     * @see Controller#modificarMatriz(Graph)
+     * 
+     */
 	public static void main(String[] args) {
 		
 		AlgoritmoFloyd algoritmo = new AlgoritmoFloyd();
