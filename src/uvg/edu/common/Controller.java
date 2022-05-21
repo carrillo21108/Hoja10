@@ -14,16 +14,38 @@ public class Controller {
 	AlgoritmoFloyd algoritmo = new AlgoritmoFloyd();
 	ArrayList<String> ciudades = new ArrayList<String>();
 	Graph matriz;
+	ArrayList<String> respuestas;
 	
 	public Controller(ArrayList<String> ciudades, Graph matriz) {
+		respuestas = algoritmo.algoritmoFloyd(ciudades, matriz);
 		this.ciudades = ciudades;
 		this.matriz = matriz;
 	}
 	
+	public void modificarCiudades(ArrayList<String> ciudades) {
+		this.ciudades = ciudades;
+	}
+	
+	public void modificarMatriz(Graph matriz) {
+		this.matriz = matriz;
+	}
+	
+	public boolean validacionGrafo(Graph matriz) {
+		boolean result = true;
+		for(int i=0;i<matriz.tamaño();i++) {
+			for(int j=0;j<matriz.tamaño();j++) {
+				long valor = matriz.devolver(i, j);
+				if(valor==999999999) {
+					result = false;
+					break;
+				}
+			}
+		}
+		return result;
+	}
+	
 	public String obtenerRuta(String ciudadOrigen, String ciudadDestino) {
 		String result = "Sin resultados";
-		
-		ArrayList<String> respuestas = algoritmo.algoritmoFloyd(ciudades, matriz);
 		
 		if(ciudades.contains(ciudadOrigen) && ciudades.contains(ciudadDestino)) {
 			String caminitos = respuestas.get(1);

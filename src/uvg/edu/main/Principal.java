@@ -23,6 +23,8 @@ public class Principal {
 	 */
 	public static void main(String[] args) {
 		
+		AlgoritmoFloyd algoritmo = new AlgoritmoFloyd();
+		
 		//Instancia del scanner
 		Scanner scanner = new Scanner(System.in);
 		//Solicitud de la ruta del archivo.
@@ -33,17 +35,101 @@ public class Principal {
 		Reader reader = new Reader();
 		ArrayList<String> ciudades = reader.obtenerCiudades(ruta);
 		Graph matriz = reader.leerTxt(ruta);
-		
 		Controller controller = new Controller(ciudades, matriz);
 		
-		//
-		System.out.println("Ingrese el nombre de la ciudad origen.");
-		String ciudadOrigen = scanner.nextLine();
-		
-		System.out.println("Ingrese el nombre de la ciudad destino.");
-		String ciudadDestino = scanner.nextLine();
-		
-		System.out.println(controller.obtenerRuta(ciudadOrigen,ciudadDestino));
+		if(!controller.validacionGrafo(matriz)) {
+			
+			System.out.println("El grafo ingresado no es conexo.");
+			
+		}else {
+			System.out.println("El grafo ingresado es conexo.");
+			
+			/**
+			 * mensaje inicial
+			 */
+			System.out.println("--Bienvenido a GraphTrafic");
+	        
+			/**
+	         * se lee el archivo txt para saber el espacio de la matriz
+	         */
+			//Banderas para el manejo de menu y errores
+			boolean menu = true;
+			boolean error = false;
+			int opcion;
+					
+			//ciclo del menu
+			do {
+				do {
+					opcion = 0;
+					//verificar opciones
+					try {
+						//Solicitud de opcion de menu
+	                    System.out.println("\n---MENU---");
+	                    System.out.println("[1] Ver ruta mas corta entre dos ciudades.");
+	                    System.out.println("[2] Ciudad en el centro.");
+	                    System.out.println("[3] Agregar conexion entre dos ciudades.");
+	                    System.out.println("[4] Interrumpir trafico entre dos ciudades.");
+	                    System.out.println("[5] Salir.");
+	                    opcion = scanner.nextInt();
+	                    error = false;
+						
+					}catch (Exception e) {
+						System.out.println("Error de ingreso, intente de nuevo");
+						error = true;
+						
+					}finally {
+						scanner.nextLine();
+					}
+					
+				}while(error);
+				
+			
+				switch(opcion) {
+				case 1:
+					System.out.println("Ingrese el nombre de la ciudad origen.");
+					String ciudadOrigen = scanner.nextLine();
+					
+					System.out.println("Ingrese el nombre de la ciudad destino.");
+					String ciudadDestino = scanner.nextLine();
+					
+					System.out.println(controller.obtenerRuta(ciudadOrigen,ciudadDestino));
+					break;
+
+				case 2:
+					System.out.println("Saliendo...");
+	        		menu = false;
+	        		break;
+
+					
+				case 3:
+					/*System.out.println("Ingrese el nombre de la ciudad origen.");
+					String origen = scanner.nextLine();
+					
+					System.out.println("Ingrese el nombre de la ciudad destino.");
+					String destino = scanner.nextLine();
+					
+					System.out.println("Ingrese la distancia entre ciudades.");
+					String distancia = scanner.nextLine();
+					
+					reader.update(ruta,origen,destino,distancia);*/
+	        		break;
+					
+				case 4:
+					System.out.println("Saliendo...");
+	        		menu = false;
+	        		break;
+	        	
+				case 5:
+	        		System.out.println("Saliendo...");
+	        		menu = false;
+	        		break;
+	        	default:
+	        		System.out.println("Opcion incorrecta. Intentelo de nuevo.");
+	        		break;
+				}
+			
+			}while(menu);
+		}
 	}
 
 }
