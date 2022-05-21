@@ -48,7 +48,7 @@ public class AlgoritmoFloyd {
 						if(min == temp4) {
 							caminoRecorrido = "";
 							caminosAux[i][j] = k + "";
-							caminos[i][j] = caminosR(i,k,caminosAux,caminoRecorrido) + (k + 1);
+							caminos[i][j] = caminosR(i,k,caminosAux,caminoRecorrido) + (k);
 						}
 					}
 					
@@ -90,7 +90,7 @@ public class AlgoritmoFloyd {
 			return "";
 		}else {
 			//Recursividad
-			caminoRecorrido += caminosR(i,Integer.parseInt(caminosAux[i][k].toString()),caminosAux,caminoRecorrido)+(Integer.parseInt(caminosAux[i][k].toString())+1)+", ";
+			caminoRecorrido += caminosR(i,Integer.parseInt(caminosAux[i][k].toString()),caminosAux,caminoRecorrido)+(Integer.parseInt(caminosAux[i][k].toString()))+", ";
 			return caminoRecorrido;
 		}
 	}
