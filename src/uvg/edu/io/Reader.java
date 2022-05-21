@@ -16,6 +16,11 @@ public class Reader {
 	
 	public Reader(){}
 	
+	/**
+	 * metodo que lee archivo txt
+	 * @param ruta
+	 * @return null
+	 */
 	public Graph leerTxt(String ruta){
 		
 		File archivo = null;
@@ -69,6 +74,12 @@ public class Reader {
         return null;
 		
 	}
+	
+	/**
+	 * metodo para obtener las ciudades del txt
+	 * @param ruta
+	 * @return guategrafo
+	 */
 	
 	public ArrayList<String> obtenerCiudades(String ruta){
 		ArrayList<String> guategrafo = new ArrayList<String>();
@@ -126,6 +137,13 @@ public class Reader {
         return null;
 	}
 	
+	/**
+	 * metodo update actualiza el txt
+	 * @param ruta
+	 * @param origen
+	 * @param destino
+	 * @param distancia
+	 */
 	public void update(String ruta, String origen, String destino, String distancia) {
 		File archivo = null;
 		
@@ -193,6 +211,13 @@ public class Reader {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * metodo delete borra en el txt
+	 * @param ruta
+	 * @param origen
+	 * @param destino
+	 * @param distancia
+	 */
 	
 	public void delete(String ruta, String origen, String destino, String distancia) {
 		File archivo = null;
