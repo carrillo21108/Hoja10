@@ -9,9 +9,13 @@ public class Graph {
     private long[][] matriz;
 
     /**
-     * Constructor
-     * @param n
-     */
+	 * Este metodo evalua una expresion en notacion infija y retorna la notacion posfija
+	 * Precondicion:
+	 * @param expresion: es la expresion simple "1 + 2" (String)
+	 * Postcondicion:
+	 * @return String: " 1 2 + "
+	 * 
+	 */
     public Graph(int n) {
         this.n = n;
         matriz = new long[this.n][this.n];
@@ -27,27 +31,33 @@ public class Graph {
     }
 
     /**
-     * add
-     * @param i
-     * @param j
-     */
+	 * Este método se utiliza para data a la matriz
+	 * Precondicion:
+	 * @param i: fila de la matriz
+	 * @param j: columna de la matriz
+	 * @param data: data a insertar
+	 * 
+	 */
     public void add(int i, int j, String data){
         matriz[i][j] = Integer.parseInt(data);
     }
 
     /**
-     * remove
-     * @param i 
-     * @param j
-     */
+	 * Este método se utiliza remover una posicion
+	 * Precondicion:
+	 * @param i: fila de la matriz
+	 * @param j: columna de la matriz
+	 * 
+	 */
     public void remove(int i, int j){
         if(matriz[i][j]>0)
             matriz[i][j] -= 1;
     }
 
     /**
-     * print
-     */
+	 * Este método se utiliza para imprimir la data de la matriz
+	 * 
+	 */
     public void print(){
 
         for(int i=0; i< n; i++){
@@ -59,33 +69,46 @@ public class Graph {
     }
 
     /**
-     * retorno
-     * @return retorna matriz
-     */
+	 * Este método se utiliza para retornar la matriz
+	 * Postcondicion:
+	 * @return matriz: matriz con la data que se esta manipulando
+	 * 
+	 */
     public long[][] retorno(){
         return matriz;
     }
 
     /**
-     * devuelve km
-     * @param a
-     * @param b
-     * @return km
-     */
+	 * Este método se utiliza para devolver los kilometros entre ciudades
+	 * Precondicion:
+	 * @param ciudad1Index: fila de la matriz
+	 * @param ciudad2Index: columna de la matriz
+	 * Postcondicion:
+	 * @return km: kilometros entre ciudades
+	 * 
+	 */
     public long devolver(int ciudad1Index, int ciudad2Index){
         return matriz[ciudad1Index][ciudad2Index];
     }
     
     /**
-     * devuelve km
-     * @param a
-     * @param b
-     * @return km
-     */
+	 * Este método se utiliza para devolver el tamaño de la matriz
+	 * Postcondicion:
+	 * @return matriz.length: largo de la matriz
+	 * 
+	 */
     public int tamaño(){
         return matriz.length;
     }
     
+    /**
+	 * Este método se utiliza para modificar el valor de una posicion de la matriz
+	 * Precondicion:
+	 * @param i: fila de la matriz
+	 * @param j: columna de la matriz
+	 * @param value: nuevo valor
+	 * 
+	 */
     public void modify(int i, int j, long value){
         matriz[i][j] = value;
     }
