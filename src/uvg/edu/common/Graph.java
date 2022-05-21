@@ -37,6 +37,8 @@ public class Graph {
 	 * @param j: columna de la matriz
 	 * @param data: data a insertar
 	 * 
+	 * @see Integer#parseInt(String)
+	 * 
 	 */
     public void add(int i, int j, String data){
         matriz[i][j] = Integer.parseInt(data);
@@ -56,6 +58,8 @@ public class Graph {
 
     /**
 	 * Este método se utiliza para imprimir la data de la matriz
+	 * 
+	 * @see System.out#println()
 	 * 
 	 */
     public void print(){
