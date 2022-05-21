@@ -24,6 +24,9 @@ public class Principal {
 	public static void main(String[] args) {
 		
 		AlgoritmoFloyd algoritmo = new AlgoritmoFloyd();
+		ArrayList<String> ciudades;
+		Graph matriz;
+		Controller controller;
 		
 		//Instancia del scanner
 		Scanner scanner = new Scanner(System.in);
@@ -33,9 +36,9 @@ public class Principal {
 		
 		//Instancia de la clase que escaneara ListadoProducto.txt
 		Reader reader = new Reader();
-		ArrayList<String> ciudades = reader.obtenerCiudades(ruta);
-		Graph matriz = reader.leerTxt(ruta);
-		Controller controller = new Controller(ciudades, matriz);
+		ciudades = reader.obtenerCiudades(ruta);
+		matriz = reader.leerTxt(ruta);
+		controller = new Controller(ciudades, matriz);
 		
 		if(!controller.validacionGrafo(matriz)) {
 			
@@ -86,22 +89,34 @@ public class Principal {
 			
 				switch(opcion) {
 				case 1:
-					System.out.println("Ingrese el nombre de la ciudad origen.");
-					String ciudadOrigen = scanner.nextLine();
-					
-					System.out.println("Ingrese el nombre de la ciudad destino.");
-					String ciudadDestino = scanner.nextLine();
-					
-					System.out.println(controller.obtenerRuta(ciudadOrigen,ciudadDestino));
+					if(!controller.validacionGrafo(matriz)) {
+						
+						System.out.println("El grafo ingresado no es conexo.");
+						
+					}else {
+						System.out.println("Ingrese el nombre de la ciudad origen.");
+						String ciudadOrigen = scanner.nextLine();
+						
+						System.out.println("Ingrese el nombre de la ciudad destino.");
+						String ciudadDestino = scanner.nextLine();
+						
+						System.out.println(controller.obtenerRuta(ciudadOrigen,ciudadDestino));
+					}
 					break;
 
 				case 2:
-					System.out.println("La ciudad que se encuentra en el centro del grafo es: " + controller.centerGraph());
+					if(!controller.validacionGrafo(matriz)) {
+						
+						System.out.println("El grafo ingresado no es conexo.");
+						
+					}else {
+						System.out.println("La ciudad que se encuentra en el centro del grafo es: " + controller.centerGraph());
+					}
 	        		break;
 
 					
 				case 3:
-					/*System.out.println("Ingrese el nombre de la ciudad origen.");
+					System.out.println("Ingrese el nombre de la ciudad origen.");
 					String origen = scanner.nextLine();
 					
 					System.out.println("Ingrese el nombre de la ciudad destino.");
@@ -110,12 +125,31 @@ public class Principal {
 					System.out.println("Ingrese la distancia entre ciudades.");
 					String distancia = scanner.nextLine();
 					
-					reader.update(ruta,origen,destino,distancia);*/
+					reader.update(ruta,origen,destino,distancia);
+					ciudades = reader.obtenerCiudades(ruta);
+					matriz = reader.leerTxt(ruta);
+					controller = new Controller(ciudades, matriz);
+					
+					System.out.println("Conexion agregada con exito.");
+					
 	        		break;
 					
 				case 4:
-					System.out.println("Saliendo...");
-	        		menu = false;
+					System.out.println("Ingrese el nombre de la ciudad origen.");
+					String origenEliminar = scanner.nextLine();
+					
+					System.out.println("Ingrese el nombre de la ciudad destino.");
+					String destinoEliminar = scanner.nextLine();
+					
+					System.out.println("Ingrese la distancia entre ciudades.");
+					String distanciaEliminar = scanner.nextLine();
+					
+					reader.delete(ruta,origenEliminar,destinoEliminar,distanciaEliminar);
+					ciudades = reader.obtenerCiudades(ruta);
+					matriz = reader.leerTxt(ruta);
+					controller = new Controller(ciudades, matriz);
+					
+					System.out.println("Conexion eliminada con exito.");
 	        		break;
 	        	
 				case 5:
