@@ -4,6 +4,9 @@
 package uvg.edu.common;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map.Entry;
 
 /**
  * @author Brian Carrillo
@@ -69,4 +72,39 @@ public class Controller {
 		
 		return result;
 	}
+	
+	public String centerGraph() {
+		
+		ArrayList<String> respuestas = algoritmo.algoritmoFloyd(ciudades, matriz);
+		System.out.println(respuestas.get(0));
+		HashMap<Integer, Long> association = new HashMap<Integer, Long>();
+		
+
+		for( int i=0; i<ciudades.size(); i++) {
+			ArrayList<Long> numeros = new ArrayList<Long>();
+			for( int j=0; j<ciudades.size(); j++) {
+				numeros.add(matriz.devolver(j, i));		
+			}
+			association.put(i, Collections.max(numeros));
+		}
+		
+		Long menor = Collections.min(association.values());
+		Integer columna = null;
+		
+		// iterate each entry of hashmap
+	    for(Entry<Integer, Long> entry: association.entrySet()) {
+
+	      // if give value is equal to value from entry
+	      // print the corresponding key
+	      if(entry.getValue() == menor) {
+	        columna = entry.getKey();
+	        break;
+	      }
+	    }
+		
+		return ciudades.get(columna);
+	}
+
+	
+	
 }
