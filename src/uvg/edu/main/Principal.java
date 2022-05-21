@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import uvg.edu.common.AlgoritmoFloyd;
+import uvg.edu.common.Controller;
 import uvg.edu.common.Graph;
 import uvg.edu.io.Conexion;
 import uvg.edu.io.Reader;
@@ -21,7 +22,7 @@ public class Principal {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		AlgoritmoFloyd algoritmo = new AlgoritmoFloyd();
+		
 		//Instancia del scanner
 		Scanner scanner = new Scanner(System.in);
 		//Solicitud de la ruta del archivo.
@@ -32,9 +33,17 @@ public class Principal {
 		Reader reader = new Reader();
 		ArrayList<String> ciudades = reader.obtenerCiudades(ruta);
 		Graph matriz = reader.leerTxt(ruta);
-
-		ArrayList<String> respuestas = algoritmo.algoritmoFloyd(ciudades, matriz);
-		System.out.println(respuestas.get(1));
+		
+		Controller controller = new Controller(ciudades, matriz);
+		
+		//
+		System.out.println("Ingrese el nombre de la ciudad origen.");
+		String ciudadOrigen = scanner.nextLine();
+		
+		System.out.println("Ingrese el nombre de la ciudad destino.");
+		String ciudadDestino = scanner.nextLine();
+		
+		System.out.println(controller.obtenerRuta(ciudadOrigen,ciudadDestino));
 	}
 
 }
