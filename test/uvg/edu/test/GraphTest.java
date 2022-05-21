@@ -22,7 +22,7 @@ import uvg.edu.io.Reader;
 class GraphTest {
 
 	@Test
-	void algoritmoFloydTest() {
+	void algoritmoFloydTest_MatrizAdyacencia() {
 		String valorEsperado = 
 				"[0][30][55][70][15]\n"
 				+ "[30][0][25][40][40]\n"
