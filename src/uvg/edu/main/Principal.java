@@ -96,8 +96,7 @@ public class Principal {
 					break;
 
 				case 2:
-					System.out.println("Saliendo...");
-	        		menu = false;
+					System.out.println("La ciudad que se encuentra en el centro del grafo es: " + controller.centerGraph());
 	        		break;
 
 					
