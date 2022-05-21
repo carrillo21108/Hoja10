@@ -63,5 +63,43 @@ class GraphTest {
 		
 		assertEquals(valorEsperado, valorRecibido);	
 	}
+	
+	@Test
+	void algoritmoFloydTest_Rutas() {
+		String valorEsperado = 
+				"0, 1, 0, 1\n"
+				+ "0, 2, 0, 1, 2\n"
+				+ "0, 3, 0, 1, 2, 3\n"
+				+ "0, 4, 0, 4\n"
+				+ "1, 0, 1, 0\n"
+				+ "1, 2, 1, 2\n"
+				+ "1, 3, 1, 2, 3\n"
+				+ "1, 4, 1, 4\n"
+				+ "2, 0, 2, 1, 0\n"
+				+ "2, 1, 2, 1\n"
+				+ "2, 3, 2, 3\n"
+				+ "2, 4, 2, 1, 4\n"
+				+ "3, 0, 3, 2, 0\n"
+				+ "3, 1, 3, 2, 1\n"
+				+ "3, 2, 3, 2\n"
+				+ "3, 4, 3, 2, 4\n"
+				+ "4, 0, 4, 0\n"
+				+ "4, 1, 4, 1\n"
+				+ "4, 2, 4, 1, 2\n"
+				+ "4, 3, 4, 1, 2, 3\n";
+		AlgoritmoFloyd algoritmo = new AlgoritmoFloyd();
+		Scanner scanner = new Scanner(System.in);
+		//Solicitud de la ruta del archivo.
+		System.out.println("Ingrese la ruta en la que se encuentra el archivo .txt a escanear.");
+		String ruta = scanner.nextLine();
+		
+		//Instancia de la clase que escaneara ListadoProducto.txt
+		Reader reader = new Reader();
+		ArrayList<String> ciudades = reader.obtenerCiudades(ruta);
+		Graph matriz = reader.leerTxt(ruta);
+		ArrayList<String>respuestas = algoritmo.algoritmoFloyd(ciudades, matriz);
+		String valorRecibido = respuestas.get(1);
+		assertEquals(valorEsperado, valorRecibido);	
+	}
 
 }
