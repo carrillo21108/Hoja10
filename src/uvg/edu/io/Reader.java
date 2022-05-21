@@ -127,56 +127,124 @@ public class Reader {
 	}
 	
 	public void update(String ruta, String origen, String destino, String distancia) {
-		try {
-			//Creacion de objeto de archivo
-			File archivo = new File(ruta);
-			
-			FileWriter fw = new FileWriter(archivo);
-			BufferedWriter bw = new BufferedWriter(fw);
-			
-			FileReader fr = new FileReader(archivo);
-			BufferedReader br = new BufferedReader(fr);
-			
-			ArrayList<String> data = new ArrayList<String>();
-			
-			try{
-	        	//Nombre del archivo que se lee para obtener los datos de las ciudades
-				archivo = new File (ruta);
-	            fr = new FileReader(archivo);
-	            br = new BufferedReader(fr);
+		File archivo = null;
+		
+		FileReader fr = null;
+		BufferedReader br = null;
+		
+		ArrayList<String> data = new ArrayList<String>();
+		
+		try{
+        	//Nombre del archivo que se lee para obtener los datos de las ciudades
+			archivo = new File (ruta);
+            fr = new FileReader(archivo);
+            br = new BufferedReader(fr);
 
-	            // Lectura del fichero
-	            String linea;
+            // Lectura del fichero
+            String linea;
 
-	            while((linea=br.readLine()) != null){
-	                data.add(linea);
-	            }
-	            
-	            
-	        }catch(Exception e){
-	        	
-	        	//En caso no se pueda escanear el archivo
-	        	System.out.println("Error al escanear el archivo.");
-	            e.printStackTrace();
-	            
-	        }finally{
-	        	
-	            // En el finally cerramos el archivo, tanto si se leyo correctamente como si
-	        	// se encontro alguna excepcion.
-	            try{
-	            	//Cierre del archivo
-	                if( fr != null ){   
-	                    fr.close();     
-	                }                  
-	            }catch (Exception f){
-	            	//En caso el archivo no pueda ser cerrado
-	            	System.out.println("Error al cerrar el archivo.");
-	               f.printStackTrace();
-	            }
-	        }
+            while((linea=br.readLine()) != null){
+                data.add(linea);
+            }
+            
+            
+        }catch(Exception e){
+        	
+        	//En caso no se pueda escanear el archivo
+        	System.out.println("Error al escanear el archivo.");
+            e.printStackTrace();
+            
+        }finally{
+        	
+            // En el finally cerramos el archivo, tanto si se leyo correctamente como si
+        	// se encontro alguna excepcion.
+            try{
+            	//Cierre del archivo
+                if( fr != null ){   
+                    fr.close();     
+                }                  
+            }catch (Exception f){
+            	//En caso el archivo no pueda ser cerrado
+            	System.out.println("Error al cerrar el archivo.");
+               f.printStackTrace();
+            }
+        }
 			
-			data.add(origen+" "+destino+" "+distancia);
+		data.add(origen+" "+destino+" "+distancia);
+		
+		FileWriter fw = null;
+		BufferedWriter bw = null;
+		
+		try{
+			fw = new FileWriter(archivo);
+			bw = new BufferedWriter(fw);
+			//Creacion del contenido del archivo
+			String contenido="";
+			for(String fila:data) {
+				contenido += fila+"\n";
+			}
 			
+			//Modificacion de todo el contenido
+			bw.write(contenido);
+			bw.close();
+			
+		}catch(Exception e) {
+			System.out.println("Error al actualizar el archivo.");
+			e.printStackTrace();
+		}
+	}
+	
+	public void delete(String ruta, String origen, String destino, String distancia) {
+		File archivo = null;
+		FileReader fr = null;
+		BufferedReader br = null;
+		
+		ArrayList<String> data = new ArrayList<String>();
+		
+		try{
+        	//Nombre del archivo que se lee para obtener los datos de las ciudades
+			archivo = new File (ruta);
+            fr = new FileReader(archivo);
+            br = new BufferedReader(fr);
+
+            // Lectura del fichero
+            String linea;
+
+            while((linea=br.readLine()) != null){
+                data.add(linea);
+            }
+            
+            
+        }catch(Exception e){
+        	
+        	//En caso no se pueda escanear el archivo
+        	System.out.println("Error al escanear el archivo.");
+            e.printStackTrace();
+            
+        }finally{
+        	
+            // En el finally cerramos el archivo, tanto si se leyo correctamente como si
+        	// se encontro alguna excepcion.
+            try{
+            	//Cierre del archivo
+                if( fr != null ){   
+                    fr.close();     
+                }                  
+            }catch (Exception f){
+            	//En caso el archivo no pueda ser cerrado
+            	System.out.println("Error al cerrar el archivo.");
+               f.printStackTrace();
+            }
+        }
+			
+		data.remove(origen+" "+destino+" "+distancia);
+		
+		FileWriter fw = null;
+		BufferedWriter bw = null;
+		
+		try{
+			fw = new FileWriter(archivo);
+			bw = new BufferedWriter(fw);
 			//Creacion del contenido del archivo
 			String contenido="";
 			for(String fila:data) {

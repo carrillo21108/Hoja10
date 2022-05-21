@@ -38,7 +38,7 @@ public class Controller {
 		for(int i=0;i<matriz.tamaño();i++) {
 			for(int j=0;j<matriz.tamaño();j++) {
 				long valor = matriz.devolver(i, j);
-				if(valor==999999999) {
+				if(valor>=999999999) {
 					result = false;
 					break;
 				}
